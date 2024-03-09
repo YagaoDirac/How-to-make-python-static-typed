@@ -1,0 +1,83 @@
+It's 2023 dec now.
+
+Mypy.
+In vs code, the extention version of mypy is different from the version comes in the terminal.
+The extention version shows information inline, and also shows red dots in file browser tab in vs code.
+The terminal way needs you to write "mypy filename.py". You can add "--strict" in the end of the command like "mypy filename.py --strict", but i don't know what it does. 
+A better way to use mypy in terminal is to add all the source files of python into a folder, and use "mypy name_of_the_folder" to let mypy check all the files in that folder.
+Keep it in mind, the mypy extension only checks what you saved. If you modified some code but didn't save, the mypy shows the old problem. So, whenever you see anything weird in mypy auto check, save your code and wait a bit.
+
+VS Code.
+Pylance is the default extension in vs code according to the official tutorial video. But according to my test, pylance doesn't check types. It only provides hints when you involke functions. The problem is that, if you change the signature of a function after you call it, the calling code is not checked. This makes pylance basically useless.
+But with the help of mypy extention(it's still in preview, but the publisher is Microsoft), vs code is useful in writing python.
+
+Pydantic.
+All the other options only suggest you not to do wrong things, only pydantic stops you from doing them.
+The code looks like:
+```
+from pydantic import BaseModel
+class some_class(BaseModel):
+    int_data:int
+```
+But I didn't find any way to ckeck functions. But it's possible to do that.
+```
+class ccTest_func(BaseModel):
+    in_a:int
+    def cc(self)->int:
+        return self.in_a+1
+
+ccTest_func(in_a = 1).cc()
+```
+You don't have to use "cc" to decorate anything. It's only part of a name. you can use whatever name you want to name the class and the member function.
+In this way, even the function is not called, it's still checked. 
+
+
+
+
+Mypy docs:
+https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+https://mypy.readthedocs.io/en/latest/error_code_list.html#code-var-annotated
+
+
+
+Some other tutorials:
+
+If you have limited idea of how to denote types in python:
+introduction to python typing + mypy (beginner - intermediate) anthony explains #047 
+from anthonywritescode
+https://www.youtube.com/watch?v=H5CnZQDKfhU
+
+
+
+
+https://www.youtube.com/watch?v=CKZ6uXOT7sE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
